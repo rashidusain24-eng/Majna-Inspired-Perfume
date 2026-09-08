@@ -6,8 +6,7 @@
 }
 
 body {
-    background: url('banner.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-color: #f9f2ed;
     color: #333;
     line-height: 1.6;
 }
@@ -70,9 +69,9 @@ main p {
 
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 30;
     background-color: #e6d9f3;
-    margin-top: 50px;
+    margin-top: 130
 }
 
 @media(max-width:768px) {
