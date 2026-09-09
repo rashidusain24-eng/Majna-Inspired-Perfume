@@ -382,35 +382,34 @@ ESTIMATED TOTAL: ₱${totalPrice.toLocaleString()}
 // =====================================================
 
 // PALITAN MO ITO NG IYONG TOTOONG EMAIL
-const yourEmail = 'Rashidusain24@email.com';  // ← ILAGAY ANG EMAIL MO
+const yourEmail = 'Rashidusain24@gmail.com';  // ← ILAGAY ANG EMAIL MO
 
 // Gumawa ng buong mensahe
 const subject = encodeURIComponent(`🛒 NEW ORDER: ${product} - ${name}`);
 const body = encodeURIComponent(orderText);
 
 // =====================================================
-// ✅ IPADALA DIREKTA SA MESSENGER 💬
+// ✅ MESSENGER — TAMA NA! WALANG MALI!
 // =====================================================
-
-// PALITAN MO ANG USERNAME NG PAGE MO
-const fbPageUsername = '61593736892215'; // ← ILAGAY MO ANG FB/MESSENGER USERNAME MO
-
-// Buuin ang Messenger link
+const fbPageUsername = "61593736892215";
 const messengerLink = "https://m.me/" + fbPageUsername + "?text=" + encodeURIComponent(orderText);
 
-// ✅ IPAPAKITA ANG LINK — I-CLICK NILA!
-alert("✅ Order Ready! 💜\n\n👉 PINDUTIN ANG LINK SA IBABA:\n\n" + messengerLink + "\n\n👉 Kopyahin at i-paste sa browser mo, o pindutin lang — bubukas sa Messenger!\n\n");
+// ✅ AWTOMATIKONG BUBUKAS SA MESSENGER
+window.open(messengerLink, "_blank");
 
-// ✅ Ipakita rin sa pahina
+// ✅ IPAPAKITA ANG LINK — KUNG HINDI BUMUKAS AGAD
+alert("✅ Order Ready! 💜\n\n👉 Kung hindi bumukas agad, pindutin ang link sa ibaba:\n\n" + messengerLink + "\n\n👉 Bubukas sa Messenger ng iyong Page!");
+
+// ✅ IPAPAKITA RIN SA PAHINA — MAY PINDUTAN
 document.getElementById("successMsg").innerHTML = 
   "✅ Order Sent! 💜<br><br>" +
-  "<a href=\"" + messengerLink + "\" target=\"_blank\" style=\"color: #7821ec; font-weight: bold; font-size: 16px;\">" +
-  "👉 PINDUTIN DITO para pumunta sa Messenger</a>";
+  "<a href='" + messengerLink + "' target='_blank' style='color: #7821ec; font-weight: bold; font-size: 16px;'>" +
+  "👉 PINDUTIN DITO kung hindi bumukas ang Messenger</a>";
 
+// ✅ I-reset ang form
 document.getElementById("successMsg").style.display = "block";
 document.getElementById("orderForm").reset();
-priceDisplay.innerHTML = "✅ Select product & size to see price";
-
+priceDisplay.innerHTML = "💜 Select product & size to see price";
 // =====================================================
 // 💡 PAANO MO MALALAMAN NA MAY ORDER?
 // =====================================================
