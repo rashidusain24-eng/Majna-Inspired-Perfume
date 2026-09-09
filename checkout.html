@@ -47,7 +47,7 @@
         }
 
         .form-container {
-            max-width: 650px;
+            max-width: 700px;
             margin: 50px auto;
             padding: 0 30px;
         }
@@ -73,7 +73,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         label {
@@ -100,6 +100,27 @@
             background-color: #fff;
         }
 
+        .size-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .size-col {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .price-display {
+            background-color: #f4eef9;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 17px;
+            color: #4b2e6b;
+            font-weight: bold;
+        }
+
         button {
             width: 100%;
             padding: 14px;
@@ -121,7 +142,7 @@
 
         .note {
             margin-top: 25px;
-            padding: 15px;
+            padding: 18px;
             background-color: #f4eef9;
             border-left: 4px solid #7b52a0;
             border-radius: 6px;
@@ -179,9 +200,42 @@
                 <input type="tel" id="phone" required placeholder="09XX XXX XXXX">
             </div>
 
+            <!-- PRODUKTO - MAY SARILING PRESYO ANG BAWAT ISA -->
             <div class="form-group">
-                <label for="product">Product & Quantity *</label>
-                <textarea id="product" rows="3" required placeholder="Example: SWY I - 2 pcs&#10;Versace Eros Flame - 1 pc"></textarea>
+                <label for="product">Product Name *</label>
+                <select id="product" required>
+                    <option value="">— Select Product —</option>
+                    <option value="SWY I">SWY I</option>
+                    <option value="Imagination">Imagination</option>
+                    <option value="Y EDP">Y EDP</option>
+                    <option value="V. Born In Roma">V. Born In Roma</option>
+                    <option value="Versace Eros Flame">Versace Eros Flame</option>
+                    <option value="Versace Eros">Versace Eros</option>
+                    <option value="Polo Red">Polo Red</option>
+                    <option value="Blue Talisman">Blue Talisman</option>
+                    <option value="Spicebomb">Spicebomb</option>
+                    <option value="Prada Candy">Prada Candy</option>
+                    <option value="La Nuit de L'Homme">La Nuit de L'Homme</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Size & Quantity *</label>
+                <div class="size-row">
+                    <div class="size-col">
+                        <label style="all:unset; font-weight:normal; color:#333; font-size:15px;">Size</label>
+                        <select id="size" required>
+                            <option value="">— Select —</option>
+                            <option value="30ml">30ml</option>
+                            <option value="50ml">50ml</option>
+                        </select>
+                    </div>
+                    <div class="size-col">
+                        <label style="all:unset; font-weight:normal; color:#333; font-size:15px;">Quantity</label>
+                        <input type="number" id="qty" min="1" max="10" value="1" required>
+                    </div>
+                </div>
+                <div class="price-display" id="priceDisplay">💜 Select product & size to see price</div>
             </div>
 
             <div class="form-group">
@@ -189,9 +243,15 @@
                 <select id="payment" required>
                     <option value="">— Select Payment Method —</option>
                     <option value="GCash">GCash</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                    <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+                    
                 </select>
+                <!-- GCash Instructions - Lalabas kapag GCash ang pinili -->
+<div id="gcashNote" style="display:none; background:#f0f4ff; padding:15px; border-radius:8px; border-left:4px solid #4285f4; margin-top:12px;">
+    <strong>💙 GCash Payment Instructions:</strong><br>
+    ✔️ We will reply within 24 hours with our GCash number & total amount<br>
+    ✔️ Please send payment ONLY AFTER we confirm your order<br>
+    ✔️ Send screenshot of payment to us via Facebook or Email 💜
+</div>
             </div>
 
             <div class="form-group">
@@ -204,55 +264,129 @@
 
         <div class="success-msg" id="successMsg">
             <strong>Order Sent Successfully! ✨</strong><br>
-            Thank you! We will confirm your order via Messenger or Email within 24 hours. 💜
+            Thank you! We will confirm your order & total price within 24 hours. 💜
         </div>
 
         <div class="note">
-            <strong>📌 Important Notes:</strong><br>
-            • After sending, we will message you to confirm total price & delivery fees<br>
-            • For GCash/Bank Transfer — we will send payment details upon confirmation<br>
-            • We reply within 24 hours (Mon–Sat)
+            <strong>📌 Quick Info:</strong><br>
+            • Price changes per product — shown above<br>
+            • We will confirm total price + delivery fee upon reply<br>
+            • Payment details sent after order confirmation
         </div>
     </main>
 
     <script>
+        // ==========================================================
+        // ✏️ ILAGAY MO ANG PRESYO NG BAWAT PRODUKTO DITO 👇
+        // ==========================================================
+        const PRICES = {
+            "SWY I":               { ml30: 450, ml50: 750 },
+            "Imagination":        { ml30: 450, ml50: 750 },
+            "Y EDP":               { ml30: 450, ml50: 750 },
+            "V. Born In Roma":     { ml30: 450, ml50: 750 },
+            "Versace Eros Flame":  { ml30: 450, ml50: 750 },
+            "Versace Eros":        { ml30: 450, ml50: 750 },
+            "Polo Red":            { ml30: 450, ml50: 750 },
+            "Blue Talisman":       { ml30: 450, ml50: 750 },
+            "Spicebomb":           { ml30: 450, ml50: 750 },
+            "Prada Candy":         { ml30: 450, ml50: 750 },
+            "La Nuit de L'Homme":  { ml30: 450, ml50: 750 }
+        };
+        // ==========================================================
+        // PALITAN MO LANG ANG MGA NUMERO SA TAAS ✏️
+        // ==========================================================
+
+        const productSelect = document.getElementById('product');
+        const sizeSelect = document.getElementById('size');
+        const qtyInput = document.getElementById('qty');
+        const priceDisplay = document.getElementById('priceDisplay');
+
+        // I-update ang presyo kapag may napili
+        function updatePrice() {
+            const product = productSelect.value;
+            const size = sizeSelect.value;
+            const qty = parseInt(qtyInput.value) || 1;
+
+            if (!product || !size) {
+                priceDisplay.innerHTML = '💜 Select product & size to see price';
+                return;
+            }
+
+            const priceData = PRICES[product];
+            if (!priceData) {
+                priceDisplay.innerHTML = '⚠️ Product not found';
+                return;
+            }
+
+            const priceEach = size === '30ml' ? priceData.ml30 : priceData.ml50;
+            const total = priceEach * qty;
+
+            priceDisplay.innerHTML = `💰 Price: ₱${priceEach.toLocaleString()} each &nbsp;|&nbsp; Total: ₱${total.toLocaleString()}`;
+        }
+
+        productSelect.addEventListener('change', updatePrice);
+        sizeSelect.addEventListener('change', updatePrice);
+        qtyInput.addEventListener('input', updatePrice);
+        // GCash note toggle
+const paymentSelect = document.getElementById('payment');
+const gcashNote = document.getElementById('gcashNote');
+
+paymentSelect.addEventListener('change', function() {
+    if (this.value === 'GCash') {
+        gcashNote.style.display = 'block';
+    } else {
+        gcashNote.style.display = 'none';
+    }
+});
+
+        // Kapag nag-submit ng order
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Kunin ang lahat ng detalye
             const name = document.getElementById('name').value;
             const address = document.getElementById('address').value;
             const phone = document.getElementById('phone').value;
             const product = document.getElementById('product').value;
+            const size = document.getElementById('size').value;
+            const qty = document.getElementById('qty').value;
             const payment = document.getElementById('payment').value;
             const message = document.getElementById('message').value || 'None';
+
+            // Kunin ang tamang presyo
+            const priceData = PRICES[product];
+            const priceEach = size === '30ml' ? priceData.ml30 : priceData.ml50;
+            const totalPrice = priceEach * parseInt(qty);
 
             // Buuin ang mensahe
             const orderText = `
 🛒 NEW ORDER FROM MAJNA WEBSITE
 
-👤 Name: ${name}
-📍 Address: ${address}
-📱 Phone: ${phone}
+👤 Customer Name: ${name}
+📍 Delivery Address: ${address}
+📱 Contact Number: ${phone}
 
-🛍️ PRODUCTS:
-${product}
+🛍️ ORDER DETAILS:
+Product: ${product}
+Size: ${size}
+Quantity: ${qty} pcs
+Price Each: ₱${priceEach.toLocaleString()}
+ESTIMATED TOTAL: ₱${totalPrice.toLocaleString()}
 
 💳 Payment Method: ${payment}
 
 📝 Notes: ${message}
             `.trim();
 
-            // OPTION A: Ipadala sa EMAIL — palitan ng iyong email
-            const yourEmail = 'your.email@example.com'; // ← PALITAN MO ITO
-            const mailtoLink = `mailto:${yourEmail}?subject=New Order from ${encodeURIComponent(name)}&body=${encodeURIComponent(orderText)}`;
+            // 👇 PALITAN NG IYONG EMAIL
+            const yourEmail = 'your.email@example.com';
+            const mailtoLink = `mailto:${yourEmail}?subject=New Order - ${encodeURIComponent(product)} - ${encodeURIComponent(name)}&body=${encodeURIComponent(orderText)}`;
 
-            // Buksan ang email client
             window.location.href = mailtoLink;
 
             // Ipakita ang success message
             document.getElementById('successMsg').style.display = 'block';
             document.getElementById('orderForm').reset();
+            priceDisplay.innerHTML = '💜 Select product & size to see price';
         });
     </script>
 </body>
