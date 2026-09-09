@@ -388,23 +388,22 @@ const yourEmail = 'Rashidusain24@gmail.com';  // ← ILAGAY ANG EMAIL MO
 const subject = encodeURIComponent(`🛒 NEW ORDER: ${product} - ${name}`);
 const body = encodeURIComponent(orderText);
 
-// =====================================================
-// ✅ MESSENGER — TAMA NA! WALANG MALI!
-// =====================================================
-const fbPageUsername = "61593736892215";
-const messengerLink = "https://m.me/" + fbPageUsername + "?text=" + encodeURIComponent(orderText);
 
-// ✅ AWTOMATIKONG BUBUKAS SA MESSENGER
+// ✅ DIREKTANG LINK SA PAGE MO — GAMIT ANG PAGE ID MO
+const fbPageId = "61593736892215";
+const messengerLink = "https://m.me/" + fbPageId + "?text=" + encodeURIComponent(orderText);
+
+// ✅ BUBUKAS AGAD SA MESSENGER NG PAGE MO
 window.open(messengerLink, "_blank");
 
-// ✅ IPAPAKITA ANG LINK — KUNG HINDI BUMUKAS AGAD
-alert("✅ Order Ready! 💜\n\n👉 Kung hindi bumukas agad, pindutin ang link sa ibaba:\n\n" + messengerLink + "\n\n👉 Bubukas sa Messenger ng iyong Page!");
+// ✅ IPAPAKITA RIN ANG LINK — PANG-SIGURADO
+alert("✅ Order Sent! 💜\n\n👉 Bubukas sa Messenger ng iyong Page!\n\n👉 Kung hindi bumukas agad, pindutin ang link:\n\n" + messengerLink);
 
 // ✅ IPAPAKITA RIN SA PAHINA — MAY PINDUTAN
 document.getElementById("successMsg").innerHTML = 
   "✅ Order Sent! 💜<br><br>" +
   "<a href='" + messengerLink + "' target='_blank' style='color: #7821ec; font-weight: bold; font-size: 16px;'>" +
-  "👉 PINDUTIN DITO kung hindi bumukas ang Messenger</a>";
+  "👉 PINDUTIN DITO para pumunta sa Messenger</a>";
 
 // ✅ I-reset ang form
 document.getElementById("successMsg").style.display = "block";
