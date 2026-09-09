@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout / Order - Majna Inspired Perfume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: #faf5ef;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        header {
+            background-color: #e6d9f3;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4b2e6b;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #4b2e6b;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 0 30px;
+        }
+
+        .form-container h1 {
+            font-size: 32px;
+            color: #4b2e6b;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .form-container p.intro {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .order-form {
+            background: #fff;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 3px 12px rgba(75, 46, 107, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #4b2e6b;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d4c4e8;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #faf8fc;
+            color: #333;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #7b52a0;
+            background-color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6b3fa0, #4b2e6b);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #7b52a0, #5b3e7b);
+            transform: translateY(-2px);
+        }
+
+        .note {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f4eef9;
+            border-left: 4px solid #7b52a0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .success-msg {
+            display: none;
+            background-color: #eef9f0;
+            border-left: 4px solid #4b9b6e;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            color: #2f6b4a;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 12px; }
+            nav a { margin: 0 8px; font-size: 14px; }
+            .order-form { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Majna Inspired Perfume</div>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+        <h1>🛒 Place Your Order</h1>
+        <p class="intro">Fill out the form below and we will confirm your order right away! 💜</p>
+
+        <form class="order-form" id="orderForm">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" required placeholder="Juan Dela Cruz">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Complete Delivery Address *</label>
+                <textarea id="address" rows="3" required placeholder="House No., Street, Barangay, City, Province"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number *</label>
+                <input type="tel" id="phone" required placeholder="09XX XXX XXXX">
+            </div>
+
+            <div class="form-group">
+                <label for="product">Product & Quantity *</label>
+                <textarea id="product" rows="3" required placeholder="Example: SWY I - 2 pcs&#10;Versace Eros Flame - 1 pc"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Payment Method *</label>
+                <select id="payment" required>
+                    <option value="">— Select Payment Method —</option>
+                    <option value="GCash">GCash</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Notes / Special Instructions</label>
+                <textarea id="message" rows="2" placeholder="Any special requests?"></textarea>
+            </div>
+
+            <button type="submit">✅ SEND ORDER</button>
+        </form>
+
+        <div class="success-msg" id="successMsg">
+            <strong>Order Sent Successfully! ✨</strong><br>
+            Thank you! We will confirm your order via Messenger or Email within 24 hours. 💜
+        </div>
+
+        <div class="note">
+            <strong>📌 Important Notes:</strong><br>
+            • After sending, we will message you to confirm total price & delivery fees<br>
+            • For GCash/Bank Transfer — we will send payment details upon confirmation<br>
+            • We reply within 24 hours (Mon–Sat)
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Kunin ang lahat ng detalye
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const payment = document.getElementById('payment').value;
+            const message = document.getElementById('message').value || 'None';
+
+            // Buuin ang mensahe
+            const orderText = `
+🛒 NEW ORDER FROM MAJNA WEBSITE
+
+👤 Name: ${name}
+📍 Address: ${address}
+📱 Phone: ${phone}
+
+🛍️ PRODUCTS:
+${product}
+
+💳 Payment Method: ${payment}
+
+📝 Notes: ${message}
+            `.trim();
+
+            // OPTION A: Ipadala sa EMAIL — palitan ng iyong email
+            const yourEmail = 'your.email@example.com'; // ← PALITAN MO ITO
+            const mailtoLink = `mailto:${yourEmail}?subject=New Order from ${encodeURIComponent(name)}&body=${encodeURIComponent(orderText)}`;
+
+            // Buksan ang email client
+            window.location.href = mailtoLink;
+
+            // Ipakita ang success message
+            document.getElementById('successMsg').style.display = 'block';
+            document.getElementById('orderForm').reset();
+        });
+    </script>
+</body>
+</html>
