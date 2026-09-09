@@ -388,8 +388,21 @@ const yourEmail = 'Rashidusain24@email.com';  // ← ILAGAY ANG EMAIL MO
 const subject = encodeURIComponent(`🛒 NEW ORDER: ${product} - ${name}`);
 const body = encodeURIComponent(orderText);
 
-// Buksan ang email client — DARATING AGAD SA INBOX MO
-window.location.href = `mailto:${yourEmail}?subject=${subject}&body=${body}`;
+// =====================================================
+// ✅ IPADALA DIREKTA SA MESSENGER 💬
+// =====================================================
+
+// PALITAN MO ANG USERNAME NG PAGE MO
+const fbPageUsername = '61593736892215'; // ← ILAGAY MO ANG FB/MESSENGER USERNAME MO
+
+// Buuin ang mensahe at buksan ang Messenger
+const messengerLink = `https://m.me/${fbPageUsername}?text=${encodeURIComponent(orderText)}`;
+window.open(messengerLink, '_blank');
+
+// Ipakita sa customer na nai-send na
+document.getElementById('successMsg').style.display = 'block';
+document.getElementById('orderForm').reset();
+priceDisplay.innerHTML = '💜 Select product & size to see price';
 
 // ✅ Ipakita sa customer na nai-send na
 document.getElementById('successMsg').style.display = 'block';
