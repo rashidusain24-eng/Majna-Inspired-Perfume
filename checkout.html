@@ -396,15 +396,20 @@ const body = encodeURIComponent(orderText);
 const fbPageUsername = '61593736892215'; // ← ILAGAY MO ANG FB/MESSENGER USERNAME MO
 
 // Buuin ang Messenger link
-const messengerLink = `https://m.me/${fbPageUsername}?text=${encodeURIComponent(orderText)}`;
+const messengerLink = "https://m.me/" + fbPageUsername + "?text=" + encodeURIComponent(orderText);
 
+// ✅ IPAPAKITA ANG LINK — I-CLICK NILA!
+alert("✅ Order Ready! 💜\n\n👉 PINDUTIN ANG LINK SA IBABA:\n\n" + messengerLink + "\n\n👉 Kopyahin at i-paste sa browser mo, o pindutin lang — bubukas sa Messenger!\n\n");
 
+// ✅ Ipakita rin sa pahina
+document.getElementById("successMsg").innerHTML = 
+  "✅ Order Sent! 💜<br><br>" +
+  "<a href=\"" + messengerLink + "\" target=\"_blank\" style=\"color: #7821ec; font-weight: bold; font-size: 16px;\">" +
+  "👉 PINDUTIN DITO para pumunta sa Messenger</a>";
 
-// Ipakita sa customer na nai-send na
-document.getElementById('successMsg').style.display = 'block';
-document.getElementById('orderForm').reset();
-priceDisplay.innerHTML = '💜 Select product & size to see price';
-
+document.getElementById("successMsg").style.display = "block";
+document.getElementById("orderForm").reset();
+priceDisplay.innerHTML = "✅ Select product & size to see price";
 
 // =====================================================
 // 💡 PAANO MO MALALAMAN NA MAY ORDER?
