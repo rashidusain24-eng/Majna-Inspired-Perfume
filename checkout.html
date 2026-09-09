@@ -398,14 +398,7 @@ const fbPageUsername = '61593736892215'; // ← ILAGAY MO ANG FB/MESSENGER USERN
 // Buuin ang Messenger link
 const messengerLink = `https://m.me/${fbPageUsername}?text=${encodeURIComponent(orderText)}`;
 
-// Subukang buksan agad — gumagana sa PC at Android
-const newWindow = window.open(messengerLink, '_blank');
-// ✅ KUNG HINDI BUMUKAS (iPhone) → I-PAKITA ANG LINK
-setTimeout(() => {
-    if (!newWindow && typeof newWindow === 'undefined') {
-        alert("✅ Order Ready to Send! 💜\n\n👉 I-COPY at I-PASTE ang link sa ibaba:\n\n" + messengerLink + "\n\n👉 O pumunta ka sa Messenger at i-send!\n\nThank you! ✨");
-    }
-}, 800);
+
 
 // Ipakita sa customer na nai-send na
 document.getElementById('successMsg').style.display = 'block';
