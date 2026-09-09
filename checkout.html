@@ -377,16 +377,31 @@ ESTIMATED TOTAL: ₱${totalPrice.toLocaleString()}
 📝 Notes: ${message}
             `.trim();
 
-            // 👇 PALITAN NG IYONG EMAIL
-            const yourEmail = 'your.email@example.com';
-            const mailtoLink = `mailto:${yourEmail}?subject=New Order - ${encodeURIComponent(product)} - ${encodeURIComponent(name)}&body=${encodeURIComponent(orderText)}`;
+          // =====================================================
+// ✅ DUMATING AGAD SA EMAIL MO + NOTIFIKASYON 📧
+// =====================================================
 
-            window.location.href = mailtoLink;
+// PALITAN MO ITO NG IYONG TOTOONG EMAIL
+const yourEmail = 'Rashidusain24@email.com';  // ← ILAGAY ANG EMAIL MO
 
-            // Ipakita ang success message
-            document.getElementById('successMsg').style.display = 'block';
-            document.getElementById('orderForm').reset();
-            priceDisplay.innerHTML = '💜 Select product & size to see price';
+// Gumawa ng buong mensahe
+const subject = encodeURIComponent(`🛒 NEW ORDER: ${product} - ${name}`);
+const body = encodeURIComponent(orderText);
+
+// Buksan ang email client — DARATING AGAD SA INBOX MO
+window.location.href = `mailto:${yourEmail}?subject=${subject}&body=${body}`;
+
+// ✅ Ipakita sa customer na nai-send na
+document.getElementById('successMsg').style.display = 'block';
+document.getElementById('orderForm').reset();
+priceDisplay.innerHTML = '💜 Select product & size to see price';
+
+// =====================================================
+// 💡 PAANO MO MALALAMAN NA MAY ORDER?
+// =====================================================
+// 1. 📧 DARATING AGAD SA EMAIL INBOX MO
+// 2. 📱 KUNG MAY EMAIL APP KA SA CELLPHONE → MAY NOTIFIKASYON KA AGAD
+// 3. 💜 BASAHIN MO ANG DETALYE → I-REPLY MO SA CUSTOMER
         });
     </script>
 </body>
